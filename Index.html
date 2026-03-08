@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRAGON-HOST | دخول</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Cairo', Tahoma, sans-serif;
+        }
+
+        :root {
+            --primary-blue: #4A90E2;    /* أزرق فاتح */
+            --pure-white: #FFFFFF;
+            --light-gray: #F5F7FA;
+            --text-dark: #2C3E50;
+            --border-light: #E1E8ED;
+            --success-green: #27AE60;
+            --danger-red: #E74C3C;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecf2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: 'Segoe UI', 'Cairo', sans-serif;
+        }
+
+        .login-container {
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .login-card {
+            background: var(--pure-white);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(74, 144, 226, 0.2);
+            padding: 50px 40px;
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s;
+        }
+
+        .login-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo h1 {
+            color: var(--primary-blue);
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(74, 144, 226, 0.1);
+        }
+
+        .logo span {
+            color: var(--text-dark);
+            font-size: 14px;
+            opacity: 0.6;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-field {
+            width: 100%;
+            background: var(--light-gray);
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            padding: 15px 20px;
+            color: var(--text-dark);
+            font-size: 16px;
+            transition: 0.3s;
+            font-family: 'Segoe UI', 'Cairo', sans-serif;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: var(--pure-white);
+            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+        }
+
+        .device-selector {
+            margin: 30px 0;
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            padding: 20px;
+            background: var(--light-gray);
+        }
+
+        .device-title {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .device-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .device-option {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .device-radio {
+            display: none;
+        }
+
+        .device-label {
+            display: block;
+            padding: 12px;
+            background: var(--pure-white);
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .device-radio:checked + .device-label {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: var(--pure-white);
+        }
+
+        .login-btn {
+            width: 100%;
+            background: var(--primary-blue);
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            color: var(--pure-white);
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+            font-family: 'Segoe UI', 'Cairo', sans-serif;
+        }
+
+        .login-btn:hover {
+            background: #357ABD;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
+
+        .register-link a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .admin-hint {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(74, 144, 226, 0.05);
+            border-radius: 8px;
+            border: 1px dashed var(--primary-blue);
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-dark);
+        }
+
+        .admin-hint strong {
+            color: var(--primary-blue);
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-error {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid var(--danger-red);
+            color: var(--danger-red);
+        }
+
+        .alert-success {
+            background: rgba(39, 174, 96, 0.1);
+            border: 1px solid var(--success-green);
+            color: var(--success-green);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo">
+                <h1>DRAGON-HOST</h1>
+                <span>منصة استضافة آمنة - Secure Hosting Platform</span>
+            </div>
+
+            <div class="alert" id="alertMessage"></div>
+
+            <div class="input-group">
+                <label class="input-label">👤 اسم المستخدم</label>
+                <input type="text" class="input-field" id="username" placeholder="أدخل اسم المستخدم" value="DragonMaster">
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">🔑 كلمة المرور</label>
+                <input type="password" class="input-field" id="password" placeholder="أدخل كلمة المرور" value="Dragon@Host2026">
+            </div>
+
+            <div class="device-selector">
+                <div class="device-title">📱 نوع الجهاز</div>
+                <div class="device-options">
+                    <div class="device-option">
+                        <input type="radio" name="device" id="computer" value="computer" class="device-radio" checked>
+                        <label for="computer" class="device-label">كمبيوتر</label>
+                    </div>
+                    <div class="device-option">
+                        <input type="radio" name="device" id="phone" value="phone" class="device-radio">
+                        <label for="phone" class="device-label">هاتف</label>
+                    </div>
+                </div>
+            </div>
+
+            <button class="login-btn" onclick="login()">تسجيل الدخول</button>
+
+            <div class="register-link">
+                ليس لديك حساب؟ <a onclick="showRegister()">إنشاء حساب جديد</a>
+            </div>
+
+            <div class="admin-hint">
+                <strong>بيانات الدخول الافتراضية:</strong><br>
+                المستخدم: DragonMaster | كلمة المرور: Dragon@Host2026
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const device = document.querySelector('input[name="device"]:checked').value;
+            const alertDiv = document.getElementById('alertMessage');
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password, device })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('username', data.username);
+                    localStorage.setItem('isAdmin', data.isAdmin);
+                    
+                    alertDiv.className = 'alert alert-success';
+                    alertDiv.style.display = 'block';
+                    alertDiv.textContent = 'تم تسجيل الدخول بنجاح! جاري التحويل...';
+                    
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 1000);
+                } else {
+                    alertDiv.className = 'alert alert-error';
+                    alertDiv.style.display = 'block';
+                    alertDiv.textContent = data.message || 'خطأ في تسجيل الدخول';
+                }
+            } catch (error) {
+                alertDiv.className = 'alert alert-error';
+                alertDiv.style.display = 'block';
+                alertDiv.textContent = 'خطأ في الاتصال بالخادم';
+            }
+        }
+
+        function showRegister() {
+            window.location.href = '/register.html';
+        }
+    </script>
+</body>
+  </html>
