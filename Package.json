@@ -1,0 +1,23 @@
+{
+  "name": "dragon-host",
+  "version": "3.0.0",
+  "description": "DRAGON-HOST - منصة استضافة حقيقية مع APIs",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod",
+    "build": "echo 'Static site with APIs, no build needed'"
+  },
+  "keywords": [
+    "hosting",
+    "docker",
+    "security",
+    "api",
+    "authentication"
+  ],
+  "author": "DragonMaster",
+  "license": "MIT",
+  "devDependencies": {
+    "vercel": "^34.0.0"
+  }
+}
